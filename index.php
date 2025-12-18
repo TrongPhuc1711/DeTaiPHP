@@ -130,7 +130,7 @@ unset($_SESSION['message'], $_SESSION['message_type']);
     <?php if (!isset($_GET['search']) && !isset($_GET['category'])): ?>
         <div class="banner">
             <div class="banner-content">
-                <h2>🎉 Nước Uống Chất Lượng - Giao Hàng Nhanh Chóng</h2>
+                <h2>Thi thu nam- ca 4 - Nguyen Hoang Trong Phuc</h2>
                 <p>Đa dạng sản phẩm - Giá cả hợp lý - Uy tín hàng đầu</p>
                 <div class="banner-features">
                     <div class="feature-item"><span>🚚</span><span>Giao hàng tận nơi</span></div>
