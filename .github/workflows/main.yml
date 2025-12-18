@@ -1,0 +1,25 @@
+name: Deploy PHP to DataOnline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP to DataOnline
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: nguyenhoangtrongphuc.site
+          username: trongphuc@nguyenhoangtrongphuc.site
+          password: Phuc1711@
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./
+          server-dir: www/nguyenhoangtrongphuc.site/
+          dangerous-clean-slate: false
