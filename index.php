@@ -89,7 +89,7 @@ unset($_SESSION['message'], $_SESSION['message_type']);
             <a href="index.php" class="logo">
                 <div class="logo-icon">🥤</div>
                 <div class="logo-text">
-                    <h1>DrinkShop</h1>
+                    <h1>Thi thu nam- ca 4 - Nguyen Hoang Trong Phuc</h1>
                     <p>Nước uống chất lượng</p>
                 </div>
             </a>
