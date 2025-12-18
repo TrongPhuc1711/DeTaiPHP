@@ -123,198 +123,7 @@ $products = $conn->query("SELECT * FROM san_pham WHERE so_luong > 0 ORDER BY ten
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản Lý Đơn Hàng</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f6fa;
-            color: #2c3e50;
-        }
-        
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        header h1 { text-align: center; font-size: 2.5em; }
-        
-        nav {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        nav ul { list-style: none; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        
-        nav a {
-            text-decoration: none;
-            color: #667eea;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        nav a:hover { background: #667eea; color: white; }
-        
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .alert {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid;
-        }
-        
-        .alert-success { background: #d4edda; color: #155724; border-color: #28a745; }
-        .alert-danger { background: #f8d7da; color: #721c24; border-color: #dc3545; }
-        
-        .search-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .search-bar input, .search-bar select {
-            padding: 12px;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            font-size: 1em;
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary { background: #667eea; color: white; }
-        .btn-primary:hover { background: #5568d3; }
-        .btn-success { background: #28a745; color: white; }
-        .btn-info { background: #17a2b8; color: white; }
-        .btn-danger { background: #dc3545; color: white; }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ecf0f1;
-        }
-        
-        th {
-            background: #f8f9fa;
-            font-weight: 600;
-        }
-        
-        tr:hover { background: #f8f9fa; }
-        
-        .badge {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 500;
-        }
-        
-        .badge-warning { background: #fff3cd; color: #856404; }
-        .badge-info { background: #d1ecf1; color: #0c5460; }
-        .badge-success { background: #d4edda; color: #155724; }
-        .badge-danger { background: #f8d7da; color: #721c24; }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        
-        .modal-content {
-            background: white;
-            margin: 30px auto;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 800px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            font-size: 1em;
-        }
-        
-        .close {
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #aaa;
-        }
-        
-        .close:hover { color: #000; }
-        
-        .product-item {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-        
-        .product-item select, .product-item input {
-            flex: 1;
-        }
-        
-        #orderTotal {
-            font-size: 1.5em;
-            color: #667eea;
-            font-weight: bold;
-            text-align: right;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/admin/orders.css">
 </head>
 <body>
     <header>
@@ -386,6 +195,9 @@ $products = $conn->query("SELECT * FROM san_pham WHERE so_luong > 0 ORDER BY ten
                         <td><?php echo date('d/m/Y H:i', strtotime($order['ngay_tao'])); ?></td>
                         <td>
                             <button class="btn btn-info" onclick="viewOrder(<?php echo $order['id']; ?>)">👁️</button>
+                            
+                            <button class="btn btn-warning" onclick="copyConfirmMsg('<?php echo $order['id']; ?>', '<?php echo formatPrice($order['tong_tien']); ?>')">📋 SMS</button>
+                            
                             <?php if ($order['trang_thai'] != 'hoan_thanh' && $order['trang_thai'] != 'huy'): ?>
                             <button class="btn btn-success" onclick="updateStatus(<?php echo $order['id']; ?>, 'next')">✓</button>
                             <?php endif; ?>
@@ -398,7 +210,6 @@ $products = $conn->query("SELECT * FROM san_pham WHERE so_luong > 0 ORDER BY ten
         </div>
     </div>
     
-    <!-- Modal Tạo đơn -->
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -447,107 +258,7 @@ $products = $conn->query("SELECT * FROM san_pham WHERE so_luong > 0 ORDER BY ten
     <script>
         const products = <?php echo json_encode($products); ?>;
         let productRows = [];
-        
-        function openAddModal() {
-            productRows = [];
-            document.getElementById('productsList').innerHTML = '';
-            document.getElementById('orderForm').reset();
-            addProductRow();
-            document.getElementById('orderModal').style.display = 'block';
-        }
-        
-        function addProductRow() {
-            const index = productRows.length;
-            const row = document.createElement('div');
-            row.className = 'product-item';
-            row.innerHTML = `
-                <select onchange="updateTotal()" data-index="${index}">
-                    <option value="">-- Chọn sản phẩm --</option>
-                    ${products.map(p => `<option value="${p.id}" data-price="${p.gia}">${p.ten_san_pham} - ${formatPrice(p.gia)} (Còn: ${p.so_luong})</option>`).join('')}
-                </select>
-                <input type="number" min="1" value="1" placeholder="Số lượng" onchange="updateTotal()" data-index="${index}">
-                <button type="button" class="btn btn-danger" onclick="removeProductRow(this)">✕</button>
-            `;
-            document.getElementById('productsList').appendChild(row);
-            productRows.push(row);
-        }
-        
-        function removeProductRow(btn) {
-            btn.parentElement.remove();
-            updateTotal();
-        }
-        
-        function updateTotal() {
-            let total = 0;
-            const rows = document.querySelectorAll('.product-item');
-            const productsData = [];
-            
-            rows.forEach(row => {
-                const select = row.querySelector('select');
-                const input = row.querySelector('input');
-                const selectedOption = select.options[select.selectedIndex];
-                
-                if (selectedOption.value) {
-                    const price = parseFloat(selectedOption.dataset.price);
-                    const quantity = parseInt(input.value) || 0;
-                    total += price * quantity;
-                    
-                    productsData.push({
-                        id: selectedOption.value,
-                        price: price,
-                        quantity: quantity
-                    });
-                }
-            });
-            
-            document.getElementById('orderTotal').textContent = 'Tổng tiền: ' + formatPrice(total);
-            document.getElementById('tongTien').value = total;
-            document.getElementById('productsData').value = JSON.stringify(productsData);
-        }
-        
-        function formatPrice(price) {
-            return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
-        }
-        
-        function viewOrder(id) {
-            window.location.href = 'order_detail.php?id=' + id;
-        }
-        
-        function updateStatus(id, action) {
-            const statuses = ['cho_xac_nhan', 'dang_giao', 'hoan_thanh'];
-            // Logic cập nhật trạng thái kế tiếp
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.innerHTML = `
-                <input type="hidden" name="action" value="update_status">
-                <input type="hidden" name="order_id" value="${id}">
-                <input type="hidden" name="status" value="dang_giao">
-            `;
-            document.body.appendChild(form);
-            form.submit();
-        }
-        
-        function deleteOrder(id) {
-            if (confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')) {
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.innerHTML = `
-                    <input type="hidden" name="action" value="delete">
-                    <input type="hidden" name="order_id" value="${id}">
-                `;
-                document.body.appendChild(form);
-                form.submit();
-            }
-        }
-        
-        function closeModal() {
-            document.getElementById('orderModal').style.display = 'none';
-        }
-        
-        window.onclick = function(event) {
-            const modal = document.getElementById('orderModal');
-            if (event.target == modal) closeModal();
-        }
     </script>
+    <script src="../js/admin/orders.js"></script>
 </body>
 </html>

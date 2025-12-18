@@ -1,5 +1,4 @@
 <?php
-// Không có khoảng trắng trước tag PHP!
 require_once 'config.php';
 requireLogin();
 
@@ -12,15 +11,13 @@ $conn = $db->getConnection();
 $action = $_POST['action'] ?? '';
 $user_id = $_SESSION['user_id'];
 
-// Kiểm tra nếu là AJAX request
+
 $is_ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 
-// ---------------------------------------------------------------------
-// ADD TO CART
-// ---------------------------------------------------------------------
+
 if ($action == 'add') {
-    // KHỐI NÀY LUÔN LÀ AJAX (do fetch), PHẢI LUÔN TRẢ VỀ JSON
+
     
     $product_id = $_POST['product_id'] ?? null;
     
@@ -84,10 +81,9 @@ if ($action == 'add') {
             'message' => $message,
             'cart_count' => $cart_count
         ], JSON_UNESCAPED_UNICODE);
-        exit; // <- Thoát ngay sau khi gửi JSON
+        exit;
         
     } catch (Exception $e) {
-        // 8. Trả về JSON lỗi nếu có ngoại lệ CSDL
         ob_clean();
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode(['success' => false, 'message' => 'Lỗi: ' . $e->getMessage()], JSON_UNESCAPED_UNICODE);
@@ -95,9 +91,7 @@ if ($action == 'add') {
     }
 }
 
-// ---------------------------------------------------------------------
-// UPDATE QUANTITY
-// ---------------------------------------------------------------------
+
 if ($action == 'update') {
     $cart_id = $_POST['cart_id'] ?? null;
     $quantity = max(1, intval($_POST['quantity'] ?? 0));
@@ -139,9 +133,7 @@ if ($action == 'update') {
     }
 }
 
-// ---------------------------------------------------------------------
-// DELETE FROM CART
-// ---------------------------------------------------------------------
+
 if ($action == 'delete') {
     $cart_id = $_POST['cart_id'] ?? null;
 
